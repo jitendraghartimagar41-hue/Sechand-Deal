@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecHand Deal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #333;
+    }
+    header {
+      background-color: #ff0000;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav {
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    nav a {
+      text-decoration: none;
+      color: #ff0000;
+      font-weight: bold;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      padding: 10px;
+      background-color: #fff0f0;
+    }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+    .product p {
+      margin: 5px 0;
+    }
+    .product button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #ddd;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SecHand Deal</h1>
+    <p>Your online second-hand store</p>
+  </header>
+
+  <nav>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="products" id="products">
+    <!-- Products will appear here dynamically -->
+  </section>
+
+  <footer>
+    <p>Contact us: info@sechanddeal.com | Phone: 9800000000</p>
+  </footer>
+
+  <script>
+    // 🔹 Product list (you can add/remove products here)
+    const products = [
+      {name: "Product 1", description: "This is product 1", price: 500, image: "https://via.placeholder.com/250x200.png?text=Product+1"},
+      {name: "Product 2", description: "This is product 2", price: 800, image: "https://via.placeholder.com/250x200.png?text=Product+2"},
+      {name: "Product 3", description: "This is product 3", price: 300, image: "https://via.placeholder.com/250x200.png?text=Product+3"}
+    ];
+
+    // 🔹 Show products dynamically
+    function showProducts() {
+      const container = document.querySelector(".products");
+      container.innerHTML = "";
+      products.forEach((p, index) => {
+        container.innerHTML += `
+          <div class="product">
+            <img src="${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <p>Price: Rs. ${p.price}</p>
+            <button onclick="buyProduct(${index})">Buy Now</button>
+          </div>
+        `;
+      });
+    }
+
+    // 🔹 Buy button function
+    function buyProduct(index) {
+      const product = products[index];
+      // Go to confirmation page with product details in URL
+      window.location.href = `confirm.html?name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(product.price)}`;
+    }
+
+    showProducts();
+  </script>
+</body>
+</html>
